@@ -7,19 +7,34 @@ struct Node {
 
 // Инициализации элемента односвязного списка нулями
 
-void init(Node* node) {
-
+void init(int n, Node** node) {
+	if (n > 0) {
+		(*node) = new Node;
+		(*node)->val = 0;
+		(*node)->next = NULL;
+		init(n - 1, &((*node)->next));
+	}	
 }
 
 // Отображения односвязного списка на экран
-void show(Node* head) {
-
+int show(Node* head) {
+		cout << head->val << endl;
+		if (head->next == NULL) {
+			cout << endl;
+			return 0;
+		}
+		show(head->next);
 }
 
 // Добавления элемента в односвязный список
-void pushNode(Node* head,Node* node) {
-
-} 
+void pushNode(Node* head, Node* node) {
+	Node* current = head;
+	for (int i = 1; current->next != NULL; i++) {
+		current = current->next;
+	}
+	node->next = current->next;
+	current->next = node;
+}
 
 
 // Написать функцию инициализации size элементов списка заданным значением val.
@@ -34,10 +49,14 @@ void copyMas(Node* source, Node* dest) {
   
 
 // Написать функцию сравнение списков source и dest. Если списки равны 0, если не равны -1
-int compareMas(Node* source, Node* dest) {
-  return 0;
+int compareMas(Node* source, Node* dest, int b) {
+	for (int i = 1; i<=b; i++) {
+		if (source->val != dest->val) return -1;
+		source = source->next;
+		dest = dest->next;
+	}
+	return 0;
 }
-
 
 // Написать функцию удаления со сдвигом влево n-го элемента списка.
 void deleteList(Node* head,int n) {

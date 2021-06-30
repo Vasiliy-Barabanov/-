@@ -34,8 +34,12 @@ void copyMas(int* source,int* dest, int size) {
 //Вариант 3:
 //Написать функцию сравнение size элементов массивов  source и dest. Если массивы равны 0, если не равны -1
 
-int compareMas(int* source,int* dest, int size) {
-  return 0;
+int compareMas(int* source, int* dest, int size) {
+	for (int i = 0; i < size; i++) {
+		if (source[i] != dest[i])
+			return -1;
+	}
+	return 0;
 }
 
 //Вариант 4:
@@ -119,20 +123,28 @@ int testCopyMas() {
 //Вариант 3:
 //Написать функцию сравнение size элементов массивов  source и dest. Если массивы равны 0, если не равны -1
 
-int testCompareMas() {
-  int source[] = {0,1,2,3,4,5,6,7,8,9}; 
-  int dest[] = {0,1,2,3,4,5,6,7};
-
-  if (compareMas(source,dest,8) != 0)
-    return -1;
-    
-  int source1[] = {0,1,2,3,4,5,6,7,8,9}; 
-  int dest1[] = {1,1,2,3,4,5,6,7};
-
-  if (compareMas(source1,dest1,8) != -1)
-    return -1;
-
-  return 0;
+int testcompareMas() {
+	int a[] = { 1,2,3,4,5,6 };
+	int b[] = { 1,2,3,4,5,6 };
+	if (compareMas(a, b, 6) != 0)
+		return -1;
+	int a1[7] = { 1,2,3,4,5,6,7 };
+	int b1[6] = { 1,2,3,4,5,6 };
+	int d1 = 7;
+	int c1 = 6;
+	if (d1 == c1) {
+		if (compareMas(a1, b1, c1) == 0)
+			return -1;
+	}	
+	int a2[] = { 1,2,3,4,5,6 };
+	int b2[] = { 1,2,3,4,5,6,7,8,9 };
+	if (compareMas(a2, b2, 8) == 0)
+		return -1;
+	int a3[] = { 7,8,3,2,5,6 };
+	int b3[] = { 1,2,3,4,5,6,5 };
+	if (compareMas(a3, b3, 3) == 0)
+		return -1;
+	return 0;
 }
 
 //Вариант 4:
