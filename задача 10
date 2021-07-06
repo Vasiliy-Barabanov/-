@@ -47,19 +47,7 @@ void setPointImage(image* img, int y, int x, int color) {
 	if (x==0) img->points[img->mx * img->my - img->mx * (img->my-y+1)] = color;
 }
 
-void saveToPnmFile(image* img, ofstream& fileName) {
-	fileName << "P1" << endl;
-	fileName << 800 << ' ' << 400 << endl;
-	for (int i = 0; i < img->mx; i++) {
-		for (int j = 0; j < img->my; j++) {
-			fileName << img->points[img->mx * img->my - img->mx * (i + 1) + j];
-		}
-		fileName << endl;
-	}
-	fileName.close();
-}
-
-void saveImage(image* img, const string filename)
+void saveToPnmFile(image* img, const string filename)
 {
 	fstream out;
 	out.open(filename, fstream::out);
@@ -102,5 +90,5 @@ int main()
 		cout << ((int)hnewy) % 400 << ' ' << ((int)hnewx) % 800 << ' ' << t << endl;
 		t = t + deltaT;
 	}
-	saveImage(&img, "F1.pnm");
+	saveToPnmFile(&img, "F1.pnm");
 }
